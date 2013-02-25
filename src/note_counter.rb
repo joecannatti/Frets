@@ -7,7 +7,7 @@ class NoteCounter
   end
 
   def lines
-    @tab.scan(/^\s*-[^\n]*\n\s*-[^\n]*\n\s*-[^\n]*\n\s*-[^\n]*\n\s*-[^\n]*\n\s*-[^\n]*/)
+    @tab.scan(/^[\s\|]*-[^\n]*\n[\s\|]*-[^\n]*\n[\s\|]*-[^\n]*\n[\s\|]*-[^\n]*\n[\s\|]*-[^\n]*\n[\s\|]*-[^\n]*/)
   end
 
   def notes
@@ -26,7 +26,7 @@ class NoteCounter
     lines.each do |line|
       line.split("\n").each_with_index do |string, index|
         string_number = 5 - index 
-        frets = string.match(/\d/).to_a
+        frets = string.scan(/\d+/).to_a
         frets.group_by { |n| n }.map { |k,v| ret[string_number][k.to_i] += v.size }
       end
     end

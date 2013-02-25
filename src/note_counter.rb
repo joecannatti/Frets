@@ -7,6 +7,7 @@ class NoteCounter
   end
 
   def lines
+    #match each block of 6 strings
     @tab.scan(/^[\s\|]*-[^\n]*\n[\s\|]*-[^\n]*\n[\s\|]*-[^\n]*\n[\s\|]*-[^\n]*\n[\s\|]*-[^\n]*\n[\s\|]*-[^\n]*/)
   end
 
@@ -22,15 +23,17 @@ class NoteCounter
   private
 
   def parse
-    ret = (0..5).map { Hash[(0..24).map { |n| [n,0] } ] }
-    lines.each do |line|
-      line.split("\n").each_with_index do |string, index|
-        string_number = 5 - index 
-        frets = string.scan(/\d+/).to_a
-        frets.group_by { |n| n }.map { |k,v| ret[string_number][k.to_i] += v.size }
+    unless @_parsed
+      @_parsed = (0..5).map { Hash[(0..24).map { |n| [n,0] } ] }
+      lines.each do |line|
+        line.split("\n").each_with_index do |string, index|
+          string_number = 5 - index 
+          frets = string.scan(/\d+/).to_a
+          frets.group_by { |n| n }.map { |k,v| @_parsed[string_number][k.to_i] += v.size }
+        end
       end
     end
-    ret
+    @_parsed
   end
 
 end

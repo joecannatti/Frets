@@ -106,26 +106,42 @@ describe NoteCounter do
 
       subject { described_class.new(hendrix_tab) }
 
-      it "reads the tab" do
+      it "reads the first string" do
         subject.notes[0][12].should eq 1
         subject.notes[0][3].should eq 2
         subject.notes[0][0].should eq 1
+      end
+
+      it "reads the second string" do
         subject.notes[1][0].should eq 1
         subject.notes[1][2].should eq 1
         subject.notes[1][5].should eq 1
         subject.notes[1][7].should eq 1
+      end
+
+      it "reads the third string" do
         subject.notes[2][12].should eq 1
         subject.notes[2][5].should eq 3
         subject.notes[2][7].should eq 1
+      end
+      
+      it "reads the fourth string" do
         subject.notes[3][0].should eq 3
         subject.notes[3][5].should eq 5
         subject.notes[3][4].should eq 3
+      end
+
+      it "reads the fifth string" do
         subject.notes[4][12].should eq 1
         subject.notes[4][3].should eq 6
+      end
+
+      it "reads the sixth string" do
         subject.notes[5][12].should eq 1
         subject.notes[5][5].should eq 1
         subject.notes[5][3].should eq 3
       end
+
     end
     
   end

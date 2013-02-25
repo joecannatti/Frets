@@ -68,6 +68,36 @@ describe NoteCounter do
 
     end
 
+    context "when the line begins with the string note name" do
+
+      let(:g_chord_tab) do
+        "e|-3-\nB|-0-\nG|-0-\nD|-0-\nA|-2-\nE|-3-"
+      end
+
+      subject { described_class.new(g_chord_tab) }
+
+      it "reads the notes correctly" do
+        subject.notes[0][3].should eq 1
+        subject.notes[1][2].should eq 1
+      end
+
+    end
+
+    context "when the line begins with the string note name and a foward or back slash" do
+
+      let(:g_chord_tab) do
+        "e\\-3-\nB|-0-\nG|-0-\nD|-0-\nA|-2-\nE\\-3-"
+      end
+
+      subject { described_class.new(g_chord_tab) }
+
+      it "reads the notes correctly" do
+        subject.notes[0][3].should eq 1
+        subject.notes[1][2].should eq 1
+      end
+
+    end
+
     context "test tab" do
     
       let(:hendrix_tab) do

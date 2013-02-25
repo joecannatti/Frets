@@ -8,7 +8,7 @@ class NoteCounter
 
   def lines
     #match each block of 6 strings
-    @tab.scan(/^[\s\|]*-[^\n]*\n[\s\|]*-[^\n]*\n[\s\|]*-[^\n]*\n[\s\|]*-[^\n]*\n[\s\|]*-[^\n]*\n[\s\|]*-[^\n]*/)
+    @tab.scan(/^[\s\|eE\\\/]*-[^\n]*\n[\s\|bB\\\/]*-[^\n]*\n[\s\|gG\\\/]*-[^\n]*\n[\s\|Dd\\\/]*-[^\n]*\n[\s\|Aa\\\/]*-[^\n]*\n[\s\|Ee\\\/]*-[^\n]*/)
   end
 
   def notes

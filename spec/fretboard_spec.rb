@@ -15,6 +15,18 @@ describe Fretboard do
       lambda { Fretboard.new(note_counter.notes) }.should_not raise_error
     end
 
+    it "accepts a 2-d array of note counts and an artist name" do
+      lambda { Fretboard.new(note_counter.notes, "Test Artist") }.should_not raise_error
+    end
+
+  end
+
+  context "#artist_name" do
+    
+    it "is stored" do
+      Fretboard.new(note_counter.notes, "Test Artist").artist_name.should eq "Test Artist"
+    end
+
   end
 
   context "summing" do

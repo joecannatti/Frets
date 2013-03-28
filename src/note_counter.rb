@@ -22,13 +22,19 @@ class NoteCounter
 
   private
 
+  def base_results
+    (0..5).map { Hash[(0..24).map { |n| [n,0] } ] }
+  end
+
   def parse
     unless @_parsed
-      @_parsed = (0..5).map { Hash[(0..24).map { |n| [n,0] } ] }
+      @_parsed = base_results
       lines.each do |line|
+        return base_results if line.split("\n").length != 6
         line.split("\n").each_with_index do |string, index|
           string_number = 5 - index 
           frets = string.scan(/\d+/).to_a
+          return base_results if frets.any? { |v| v.to_i < 0 || v.to_i > 24 }
           frets.group_by { |n| n }.map { |k,v| @_parsed[string_number][k.to_i] += v.size }
         end
       end

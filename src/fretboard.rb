@@ -29,6 +29,8 @@ class Fretboard
   end
 
   def to_json
-    {notes: notes, artist_name: @artist_name, number_of_tabs: @number_of_tabs}.to_json
+    p artist_name
+    p probability
+    {notes: notes, probability: probability, artist_name: @artist_name, number_of_tabs: @number_of_tabs}.to_json
   end
 end
